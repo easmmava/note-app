@@ -1,11 +1,13 @@
+import "../App.css";
 import { useState } from "react";
 
-function AddNewNote() {
+function AddNewNote({ onAddNote }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!title || !description) return null;
 
     const newNote = {
       title,
@@ -14,8 +16,9 @@ function AddNewNote() {
       completed: false,
       createdAt: new Date().toISOString(),
     };
-    title("");
-    description("");
+    onAddNote(newNote);
+    setTitle("");
+    setDescription("");
   };
 
   return (
