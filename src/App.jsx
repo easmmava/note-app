@@ -1,6 +1,7 @@
 import "./App.css";
 import AddNewNote from "./components/AddNewNote";
 import NoteList from "./components/NoteList";
+import NoteStatus from "./components/NoteStatus";
 import { useState } from "react";
 function App() {
   const [notes, setNotes] = useState([]);
@@ -17,7 +18,7 @@ function App() {
     const noteId = Number(e.target.value);
     setNotes((prevNotes) =>
       prevNotes.map((note) =>
-        note.id === noteId ? { ...note, completed : !note.completed } : note
+        note.id === noteId ? { ...note, completed: !note.completed } : note
       )
     );
   };
@@ -26,8 +27,9 @@ function App() {
     <div className="container">
       <div className="note-header">note header</div>
       <div className="note-app">
+        <AddNewNote onAddNote={handelAddNote} />
         <div className="note-section">
-          <AddNewNote onAddNote={handelAddNote} />
+          <NoteStatus notes={notes} />
           <NoteList
             notes={notes}
             onDelete={handleDeleteNote}
