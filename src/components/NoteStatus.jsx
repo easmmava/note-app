@@ -1,11 +1,13 @@
 import "../App.css";
+import Message from "./Message";
 
 function NoteStatus({ notes }) {
   const allNotes = notes.length;
   const completedNotes = notes.filter((n) => n.completed).length;
   const unCompletedNotes = allNotes - completedNotes;
 
-  if (!allNotes) return <h2 className="note-status">No Notes has already been added.</h2>;
+  if (!allNotes)
+    return <Message icon="❎"> No Notes has already been added.</Message>;
   return (
     <ul className="note-status">
       <li>
